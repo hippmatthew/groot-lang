@@ -1,0 +1,9 @@
+[submodule "ext/slang"]
+	path = ext/slang
+	url = git@github.com:shader-slang/slang.git
+[submodule "ext/glfw"]
+	path = ext/glfw
+	url = git@github.com:glfw/glfw.git
+[submodule "ext/glm"]
+	path = ext/glm
+	url = git@github.com:g-truc/glm.git

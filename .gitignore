@@ -1,0 +1,7 @@
+# Files
+.DS_Store
+
+# Directories
+__cmake_system_information/
+build/
+.cache/
