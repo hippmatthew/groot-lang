@@ -2,10 +2,10 @@
 
 #include <iostream>
 
-namespace gl {
+namespace groot {
 
 void helloworld() {
   std::cout << "Hello, world!\n";
 }
 
-} // namespace gl
+} // namespace groot

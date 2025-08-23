@@ -1,7 +1,7 @@
 #pragma once
 
-namespace gl {
+namespace groot {
 
 void helloworld();
 
-} // namespace gl
+} // namespace groot

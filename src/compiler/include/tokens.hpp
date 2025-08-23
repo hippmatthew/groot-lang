@@ -1,19 +1,63 @@
 #pragma once
 
+#include <map>
 #include <string>
 
-namespace gl {
+namespace groot {
 
 enum Token {
-  hello = 0
+  Invalid = -1,
+  Hello,
+  Variable,
+  Literal,
+
+  // -- types --
+  Int,
+  Uint,
+  Float,
+  Bool,
+  String,
+  Vec2,
+  Vec3,
+  Vec4,
+  Mat2,
+  Mat3,
+  Mat4,
+  Array,
+  Map,
+  Tuple,
+
+  // -- operators --
+  Add,      // +
+  Subtract, // -
+  Multiply, // *
+  Divide,   // /
+  Modulus,  // %
+  Power,    // **
+  Assign,   // =
+  Typing,   // ->
+
+  // -- symbols --
+  OpenParen,
+  CloseParen,
 };
 
-} // namespace gl
+class TokenMap {
+  std::map<std::string, Token> m_map;
 
-namespace std {
-  inline std::string to_string(const gl::Token& tok) {
-    switch (tok) {
-      case gl::Token::hello: return "hello";
-    }
-  }
-}
+  public:
+    TokenMap();
+    TokenMap(const TokenMap&) = default;
+    TokenMap(TokenMap&&) = default;
+
+    ~TokenMap() = default;
+
+    TokenMap& operator=(const TokenMap&) = default;
+    TokenMap& operator=(TokenMap&&) = default;
+
+    Token operator[](const std::string&) const;
+
+    unsigned int precedence(Token) const;
+};
+
+} // namespace groot

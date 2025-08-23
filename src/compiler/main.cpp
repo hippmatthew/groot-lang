@@ -1,10 +1,10 @@
 #include "src/compiler/include/tokens.hpp"
-#include "src/engine/include/engine.hpp"
+#include "src/compiler/include/lexer.hpp"
 
-#include <string>
-#include <sstream>
-#include <fstream>
 #include <iostream>
+#include <string>
+
+using namespace groot;
 
 int main(int argc, char ** argv) {
   if (argc != 2) {
@@ -12,20 +12,15 @@ int main(int argc, char ** argv) {
     return 1;
   }
 
-  std::ifstream file(argv[1]);
-  if (!file) {
-    std::cout << "failed to load file\n";
-    return 1;
-  }
+  Lexer lexer(argv[1]);
 
-  std::string line;
-  while (std::getline(file, line)) {
-    std::istringstream ss(line);
-    std::string token;
-
-    while (ss >> token) {
-      if (token == std::to_string(gl::Token::hello))
-        gl::helloworld();
+  std::size_t prevLine = 0;
+  for (const auto& [token, lit, lineNum] : lexer) {
+    if (prevLine != lineNum) {
+      std::cout << '\n';
+      prevLine = lineNum;
     }
+
+    std::cout << lit << ' ';
   }
 }
